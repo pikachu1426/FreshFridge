@@ -24,7 +24,7 @@ class AddFoodHandler(webapp2.RequestHandler):
 
 class FoodConfirmHandler(webapp2.RequestHandler):
     def post(self):
-        
+
         template_vars = {
             'food-type': self.request.get('food-type'),
             'food-name': self.request.get('food-name'),
@@ -43,9 +43,7 @@ class ListFoodHandler(webapp2.RequestHandler):
 
 
 
-class AddEvent(webapp2.RequestHandler):
-    def get(self):
-        self.response.write(" Add Event Here.")
+
 
 
 

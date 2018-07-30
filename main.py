@@ -9,7 +9,9 @@ current_jinja_environment = JINJA_ENVIRONMENT = jinja2.Environment(
 
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write("Hello")
+        welcome_template = JINJA_ENVIRONMENT.get_template('templates/home.html')
+        self.response.write(welcome_template.render())
+
 
 
 

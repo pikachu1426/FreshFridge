@@ -9,9 +9,17 @@ current_jinja_environment = jinja2.Environment(
 
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write("Hello, welcome to FreshFridge!")
         home_template = current_jinja_environment.get_template('/templates/home.html')
         self.response.write(home_template.render())
+
+class AddFoodHandler(webapp2.RequestHandler):
+    def get(self):
+        self.response.write("You made it to Add Food")
+
+
+class ListFoodHandler(weball2.RequestHandler):
+    def get(self):
+        self.response.write("You made it to List Food")
 
 
 
@@ -25,5 +33,7 @@ class HomeHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     #('/', MainHandler),
-    ('/', HomeHandler)
+    ('/', HomeHandler),
+    ('/add-food', AddFoodHandler),
+    ('/list-food', ListFoodHandler)
 ])

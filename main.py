@@ -17,7 +17,9 @@ class HomeHandler(webapp2.RequestHandler):
 
 
 
-
+class AddEvent(webapp2.RequestHandler):
+    def get(self):
+        self.response.write(" Add Event Here.")
 
 
 

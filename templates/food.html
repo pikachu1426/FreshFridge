@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert Food</title>
+</head>
+
+<body>
+  <h3>Insert a food item</h3>
+  <form method='post' action='/confirm'>
+    Select Food Category:<br />
+    <select name='food-type'>
+      <option value='grain'> Grain  </option>
+      <option value='fruit'>Fruit  </option>
+      <option value='meat'> Meat  </option>
+      <option value='vegetables'>  Vegetables </option>
+      <option value='dairy'> Dairy </option>
+    </select>
+    <br />
+    Name of Food:<br />
+    <input type='text' name='food-name' />
+    <br />
+    Date Bought (mm/dd/yyyy):<br />
+    <input type='text' name='bought-date' />
+    <br />
+    Expiration Date (mm/dd/yyyy):<br />
+    <input type='text' name='exp-date' />
+    <br />
+    <input type='submit' value='Go!' />
+  </form>
+</body>
+</html>

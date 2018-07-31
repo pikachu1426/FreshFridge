@@ -74,9 +74,10 @@ class ListFoodHandler(webapp2.RequestHandler):
             str_temp+=('<td>'+str(food_item.buy_month)+'/'+str(food_item.buy_date)+'/'+str(food_item.buy_year)+'</td>')
             str_temp+=('<td>'+str(food_item.exp_month)+'/'+str(food_item.exp_date)+'/'+str(food_item.exp_year)+'</td>')
             if now_time>=exp_time or bought_time>=exp_time:
-                str_temp+=('<td>'+True+'</td>')
+                str_temp+=('<td>'+str(True)+'</td>')
             else:
-                str_temp+=('<td>'+False+'</td>')
+                str_temp+=('<td>'+str(False)+'</td>')
+            str_temp+=("<td><form method='post' action='/list-food'> <input type='submit' value='Remove' ></form></td>")
             str_temp+='</tr>'
             food_list_dict['get_list']+=str_temp
 

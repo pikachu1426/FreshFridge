@@ -21,6 +21,22 @@ current_jinja_environment = jinja2.Environment(
 
 current_food_information = {}
 
+class LoginHandler(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            auth_url = users.create_logout_url('/')
+            auth_text = "Log Out"
+        else:
+            auth_url = users.create_login_url('/homepage')
+            auth_text = "Log In"
+        template_vars = {
+            "auth_url": auth_url,
+            "auth_text": auth_text,
+        }
+        template = current_jinja_environment.get_template("templates/start.html")
+        self.response.write(template.render(template_vars))
+
 
 
 class HomeHandler(webapp2.RequestHandler):
@@ -93,7 +109,7 @@ class ListFoodHandler(webapp2.RequestHandler):
                 str_temp+=('<td>'+str(True)+'</td>')
             else:
                 str_temp+=('<td>'+str(False)+'</td>')
-            str_temp+=("<td><form method='post' action='/list-food'> <input type='submit' value='Remove' ></form></td>")
+            str_temp+=("<td><form method='post' action='/'> <input type='submit' value='Remove' ></form></td>")
             str_temp+='</tr>'
             food_list_dict['get_list']+=str_temp
 
@@ -120,7 +136,8 @@ class ListFoodHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     #('/', MainHandler),
-    ('/', HomeHandler),
+    ('/', LoginHandler),
+    ('/homepage', HomeHandler),
     ('/add-food', AddFoodHandler),
     ('/list-food', ListFoodHandler),
     ('/confirm', FoodConfirmHandler),

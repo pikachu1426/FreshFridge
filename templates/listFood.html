@@ -2,10 +2,26 @@
 <html>
 <head>
 <title>FreshFridge</title>
+<style>
+  table, th, td {
+    border: 1px solid black;
+  }
+</style>
 </head>
 <body>
 
 <h1>Welcome to FreshFridge</h1>
+
+<table style="width:100%">
+  <tr>
+    <th>Food Type</th>
+    <th>Food Name</th>
+    <th>Date Bought</th>
+    <th>Expiration Date</th>
+    <th>Is Expired?</th>
+  </tr>
+  {{get_list|safe}}
+</table>
 
 <form method='post' action='/add-food'>
   <input type='submit' value='Add another item'>

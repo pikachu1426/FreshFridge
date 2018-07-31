@@ -61,12 +61,26 @@ class ConfirmedHandler(webapp2.RequestHandler):
 
 class ListFoodHandler(webapp2.RequestHandler):
     def post(self):
+        food_list_dict = {'get_list': '',}
         food_item_query = FoodItem.query()
         for food_item in food_item_query:
-            self.response.write(food_item.food_name)
-            self.response.write('\n')
+            str_temp = "<tr>"
+            str_temp+=('<td>'+food_item.food_type+'</td>')
+            str_temp+=('<td>'+food_item.food_name+'</td>')
+            now_time = datetime.datetime.now()
+            bought_time = datetime.datetime(food_item.buy_year, food_item.buy_month, food_item.buy_date)
+            exp_time = datetime.datetime(food_item.exp_year, food_item.exp_month, food_item.exp_date)
+            str_temp+=('<td>'+str(food_item.buy_month)+'/'+str(food_item.buy_date)+'/'+str(food_item.buy_year)+'</td>')
+            str_temp+=('<td>'+str(food_item.exp_month)+'/'+str(food_item.exp_date)+'/'+str(food_item.exp_year)+'</td>')
+            if now_time>=exp_time or bought_time>=exp_time:
+                str_temp+=('<td>'+True+'</td>')
+            else:
+                str_temp+=('<td>'+False+'</td>')
+            str_temp+='</tr>'
+            food_list_dict['get_list']+=str_temp
 
-        #list_template = current_jinja_environment
+        list_template = current_jinja_environment.get_template('/templates/listFood.html')
+        self.response.write(list_template.render(food_list_dict))
 
 
 

@@ -6,7 +6,7 @@
 
 <body>
   <h3>Insert a food item</h3>
-  <form method='post' action='/confirm'>
+  <form name='food-form' method='post' action='/confirm'>
     Select Food Category:<br />
     <select name='food-type'>
       <option value='grain'> Grain  </option>
@@ -25,7 +25,31 @@
     Expiration Date (mm/dd/yyyy):<br />
     <input type='text' name='exp-date' />
     <br />
-    <input type='submit' value='Go!' />
+    <input type='submit' value='Go!' onClick='return validateForm()'/>
   </form>
+
+<script>
+function validateForm() {
+        let fields = ['food-name', 'bought-date', 'exp-date'];
+        let length = fields.length;
+        let fieldname;
+
+        for (i=0; i<length; i++) {
+          fieldname = fields[i];
+          if (document.forms['food-form'][fieldname].value === "") {
+            alert(fieldname + " can not be empty.")
+            return false;
+          }
+          if (fieldname=='bought-date' || fieldname=='exp-date'){
+            let arr = document.forms['food-form'][fieldname].value.split('/')
+            if (arr.length!=3){
+              alert("Please format " + fieldname + " correctly")
+              return false;
+            }
+          }
+        }
+        return true;
+      };
+</script>
 </body>
 </html>

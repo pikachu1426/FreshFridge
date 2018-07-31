@@ -31,6 +31,7 @@ class FoodConfirmHandler(webapp2.RequestHandler):
     def post(self):
 
 
+
         template_vars = {
             'food_type': self.request.get('food-type'),
             'food_name': self.request.get('food-name'),

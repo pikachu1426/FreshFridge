@@ -1,8 +1,18 @@
 import webapp2
+import json
 import os
 import jinja2
 import datetime
 from food_items import FoodItem
+from google.appengine.api import users
+
+
+
+f = open('client_secret.json', 'r')
+client_secrets =json.loads(f.read())
+f.close()
+
+print client_secrets
 
 current_jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -19,12 +29,18 @@ class HomeHandler(webapp2.RequestHandler):
         self.response.write(home_template.render())
 
 
+
 class AddFoodHandler(webapp2.RequestHandler):
     def post(self):
+        template_vars= {
+        'client_id':client_secrets['web']['client_id'],
+        'api_key':client_secrets['web']['api_key'],
+        }
         food_template = current_jinja_environment.get_template('/templates/food.html')
 
         self.response.write("You made it to Add Food")
-        self.response.write(food_template.render())
+        self.response.write(food_template.render(template_vars))
+
 
 
 class FoodConfirmHandler(webapp2.RequestHandler):

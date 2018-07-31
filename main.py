@@ -25,18 +25,18 @@ class AddFoodHandler(webapp2.RequestHandler):
 
 class FoodConfirmHandler(webapp2.RequestHandler):
     def post(self):
-<<<<<<< HEAD
+
         bought_date_list = self.request.get('bought-date').split('/')
         exp_date_list = self.request.get('exp-date').split('/')
-=======
 
->>>>>>> dc77b858a4f823d8c84dc459d6eac1d0c0f20734
+
+
         template_vars = {
             'food_type': self.request.get('food-type'),
             'food_name': self.request.get('food-name'),
             'bought_date': self.request.get('bought-date'),
             'exp_date': self.request.get('exp-date'),
-            
+
         }
         confirm_template = current_jinja_environment.get_template('/templates/confirm.html')
 
@@ -46,7 +46,9 @@ class FoodConfirmHandler(webapp2.RequestHandler):
 
 class ListFoodHandler(webapp2.RequestHandler):
     def post(self):
+        list_template = current_jinja_environment.get_template('/templates/listFood.html')
         self.response.write("You made it to List Food")
+        self.response.write(list_template.render())
 
 
 

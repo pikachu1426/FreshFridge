@@ -30,7 +30,10 @@ class FoodConfirmHandler(webapp2.RequestHandler):
         exp_date_list = self.request.get('exp-date').split('/')
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 79da5761182727660321a65fab8403cc901722af
         template_vars = {
             'food_type': self.request.get('food-type'),
             'food_name': self.request.get('food-name'),

@@ -25,8 +25,12 @@ class AddFoodHandler(webapp2.RequestHandler):
 
 class FoodConfirmHandler(webapp2.RequestHandler):
     def post(self):
+<<<<<<< HEAD
         bought_date_list = self.request.get('bought-date').split('/')
         exp_date_list = self.request.get('exp-date').split('/')
+=======
+
+>>>>>>> dc77b858a4f823d8c84dc459d6eac1d0c0f20734
         template_vars = {
             'food_type': self.request.get('food-type'),
             'food_name': self.request.get('food-name'),

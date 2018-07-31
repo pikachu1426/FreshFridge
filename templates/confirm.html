@@ -5,6 +5,16 @@
 </head>
 
 <body>
-  
+  <h4>Confirm</h4>
+  <p >
+    Food Type: {{food_type}} <br />
+    Food Name: {{food_name}}<br />
+    Bought Date: {{bought_date}}<br />
+    Expiration Date: {{exp_date}}
+  </p>
+
+  <form method='post' action='/list-food'>
+    <input type='submit' value='Confirm!' />
+  </form>
 </body>
 </html>

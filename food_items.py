@@ -11,3 +11,4 @@ class FoodItem(ndb.Model):
     exp_month = ndb.IntegerProperty(required=True)
     exp_date = ndb.IntegerProperty(required=True)
     exp_year = ndb.IntegerProperty(required=True)
+    is_expired = ndb.BooleanProperty(default=False)

@@ -2,30 +2,99 @@
 <html>
 <head>
 <title>Insert Food</title>
-</head>
 
+
+
+<link rel=”stylesheet” href='home.css'>
+<style>
+body {
+    background-color: #e6e9ff;
+}
+#main {
+  margin: auto;
+  width: 1000px;
+  background-color: white;
+  padding: 10px;
+}
+</style>
+
+</head>
 <body>
-  <h3>Insert a food item</h3>
+  <div id="main">
+<br>
+  <section>
+    <center>
+  <img src='https://image.ibb.co/kXYe3z/Screen_Shot_2018_08_01_at_10_33_12_AM.png'>
+    </center>
+  </section>
+
+<br>
+
+  <section>
+    <center>
+  <img src='https://image.ibb.co/eNuQtz/Screen_Shot_2018_08_01_at_11_16_54_AM.png'>
+</center>
+  </section>
+
   <form name='food-form' method='post' action='/confirm'>
-    Select Food Category:<br />
+
+<br>
+<br>
+
+    <section>
+      <center>
+    <img src='https://image.ibb.co/gRBGiz/Screen_Shot_2018_08_01_at_10_54_00_AM.png'>
+  </center>
+    </section>
+<center>
     <select name='food-type'>
       <option value='grain'> Grain  </option>
       <option value='fruit'>Fruit  </option>
       <option value='meat'> Meat  </option>
       <option value='vegetables'>  Vegetables </option>
       <option value='dairy'> Dairy </option>
+    </center>
     </select>
-    <br />
-    Name of Food:<br />
+
+    <br>
+    <br>
+    <br>
+
+    <section>
+      <center>
+    <img src='https://image.ibb.co/krWS6K/Screen_Shot_2018_08_01_at_10_58_36_AM.png'>
+  </center>
+    </section>
+
     <input type='text' name='food-name' />
     <br />
-    Date Bought (mm/dd/yyyy):<br />
+
+    <br>
+    <br>
+
+    <section>
+      <center>
+    <img src='https://image.ibb.co/jOVvRK/Screen_Shot_2018_08_01_at_11_38_44_AM.png'>
+  </center>
+    </section>
+
     <input type='text' name='bought-date' />
     <br />
-    Expiration Date (mm/dd/yyyy):<br />
+
+    <br>
+    <br>
+
+    <section>
+      <center>
+    <img src='https://image.ibb.co/hHQ9Le/Screen_Shot_2018_08_01_at_11_38_48_AM.png'>
+  </center>
+    </section>
+
     <input type='text' name='exp-date' />
     <br />
+    <center>
     <input type='submit' value='Go!' onClick='return validateForm()'/>
+  </center>
   </form>
 
   <script>
@@ -51,6 +120,16 @@ function validateForm() {
         return true;
       };
 </script>
+
+<br>
+<br>
+<br>
+
+<section>
+  <center>
+<img src='https://image.ibb.co/g4MVbK/Logo_Makr_13.png'>
+  </center>
+</section>
 
   <br />
   <h3> To add to your google calendar sign in !</h3>

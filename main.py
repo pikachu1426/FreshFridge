@@ -36,7 +36,6 @@ class LoginHandler(webapp2.RequestHandler):
 
         if loggedin_user:
             current_users = User.query(User.id == loggedin_user.user_id()).fetch()
-            self.response.write(current_users)
             x = []
             if current_users == x:
                 template = current_jinja_environment.get_template('templates/signup.html')
@@ -66,7 +65,6 @@ class AddFoodHandler(webapp2.RequestHandler):
         }
         food_template = current_jinja_environment.get_template('/templates/food.html')
 
-        self.response.write("You made it to Add Food")
         self.response.write(food_template.render(template_vars))
 
 

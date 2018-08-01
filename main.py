@@ -126,13 +126,17 @@ class ListFoodHandler(webapp2.RequestHandler):
             bought_time = datetime.datetime(food_item.buy_year, food_item.buy_month, food_item.buy_date)
             exp_time = datetime.datetime(food_item.exp_year, food_item.exp_month, food_item.exp_date)
             if now_time>=exp_time:
-                food_exp_calc['exp'].append(food_item)
+                if food_item not in food_exp_calc['exp']:
+                    food_exp_calc['exp'].append(food_item)
             elif (now_time - exp_time).days == 1:
-                food_exp_calc['day'].append(food_item)
+                if food_item not in food_exp_calc['day']:
+                    food_exp_calc['day'].append(food_item)
             elif (now_time - exp_time).days <= 7:
-                food_exp_calc['week'].append(food_item)
+                if food_item not in food_exp_calc['week']:
+                    food_exp_calc['week'].append(food_item)
             elif (now_time - exp_time).days <= 30:
-                food_exp_calc['month'].append(food_item)
+                if food_item not in food_exp_calc['month']:
+                    food_exp_calc['month'].append(food_item)
             str_temp+=('<td>'+str(food_item.buy_month)+'/'+str(food_item.buy_date)+'/'+str(food_item.buy_year)+'</td>')
             str_temp+=('<td>'+str(food_item.exp_month)+'/'+str(food_item.exp_date)+'/'+str(food_item.exp_year)+'</td>')
             if now_time>=exp_time or bought_time>=exp_time:
@@ -175,9 +179,7 @@ class ListFoodHandler(webapp2.RequestHandler):
 
         list_template = current_jinja_environment.get_template('/templates/listFood.html')
         self.response.write(list_template.render(food_list_dict))
-        food_exp_calc = {'exp':[], 'month':[], 'week':[], 'day':[]}
-        food_list_dict = {'get_list': '', 'get_day': '', 'get_week': '', 'get_month': '', 'get_exp': ''}
-
+        
 
 
 

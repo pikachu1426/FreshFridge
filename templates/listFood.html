@@ -16,6 +16,30 @@
     background-color: white;
     padding: 10px;
   }
+
+  .button {
+    background-color: #808080;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .button4:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 12px;
+  }
+
+
+  .button4 {
+    border-radius: 12px;
+  }
 </style>
 </head>
 <body>
@@ -47,11 +71,11 @@
 <h1>Welcome to FreshFridge</h1>
 
 <form method='get' action='/homepage'>
-  <input type='submit' value='home!' />
+  <button class="button button4">Home</button>
 </form>
 
 <form method='post' action='/add-food'>
-  <input type='submit' value='Add more food' />
+  <button class="button button4">Add more food</button>
 </form>
 
 <h2>
@@ -205,7 +229,7 @@
 
 <form method='post' action='/add-food'>
   <center>
-  <input type='submit' value='Add another item'>
+  <button class="button button4">Add another item</button>
 </center>
 </form>
 

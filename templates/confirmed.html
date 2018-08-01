@@ -3,26 +3,53 @@
 
 <head>
   <title>Confirmed</title>
+  <style>
+    .button {
+      background-color: #808080;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .button4:hover {
+      box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 12px;
+    }
+
+
+    .button4 {
+      border-radius: 12px;
+    }
+  </style>
 </head>
+
 <body>
   <form method='get' action='/list-food'>
-    <input type='submit' value='See List' />
+    <button class="button button4">See List</button>
   </form>
   <form method='post' action='/add-food'>
-    <input type='submit' value='Add More Food' />
+    <button class="button button4">Add more food</button>
   </form>
 
   <br />
 
   <form method='get' action='/homepage'>
-    <input type='submit' value='home!' />
+    <button class="button button4">Home</button>
   </form>
 
   <form method='post' action='/add-food'>
-    <input type='submit' value='Go back' />
+    <button class="button button4">Go back </button>
   </form>
 
 
 
 </body>
+
 </html>

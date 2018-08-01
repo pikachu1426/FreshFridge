@@ -96,7 +96,6 @@ class FoodConfirmHandler(webapp2.RequestHandler):
 #class ConfirmedHandler(webapp2.RequestHandler):
 class ConfirmedHandler(webapp2.RequestHandler):
     def post(self):
-        self.response.write("Food Item Added to Database")
         bought_date_list = current_food_information['bought_date'].split('/')
         exp_date_list = current_food_information['exp_date'].split('/')
 

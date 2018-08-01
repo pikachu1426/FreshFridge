@@ -4,6 +4,7 @@ import os
 import jinja2
 import datetime
 import time
+import math
 from food_items import FoodItem
 from food_items import User
 from google.appengine.ext import ndb
@@ -55,7 +56,10 @@ class MakeUserHandler(webapp2.RequestHandler):
         time.sleep(.25)
         self.redirect('/homepage')
 
-
+class HomePageHandler(webapp2.RequestHandler):
+    def get(self):
+        home_template = current_jinja_environment.get_template('templates/home.html')
+        self.response.write(home_template.render())
 
 class AddFoodHandler(webapp2.RequestHandler):
     def post(self):
@@ -76,6 +80,8 @@ class FoodConfirmHandler(webapp2.RequestHandler):
             'food_name': self.request.get('food-name'),
             'bought_date': self.request.get('bought-date'),
             'exp_date': self.request.get('exp-date'),
+            'client_id':client_secrets['web']['client_id'],
+            'api_key':client_secrets['web']['api_key'],
         }
 
         current_food_information['food_type'] = self.request.get('food-type')
@@ -103,7 +109,8 @@ class ConfirmedHandler(webapp2.RequestHandler):
 class ListFoodHandler(webapp2.RequestHandler):
     def get(self):
         food_item_query = FoodItem.query().filter(FoodItem.user_id==str(users.get_current_user().user_id()))
-        food_list_dict = {'get_list': ''}
+        food_exp_calc = {'exp':[], 'month':[], 'week':[], 'day':[]}
+        food_list_dict = {'get_list': '', 'get_day': '', 'get_week': '', 'get_month': '', 'get_exp': ''}
         for food_item in food_item_query:
             str_temp = "<tr>"
             str_temp+=('<td>'+food_item.food_type+'</td>')
@@ -111,20 +118,58 @@ class ListFoodHandler(webapp2.RequestHandler):
             now_time = datetime.datetime.now()
             bought_time = datetime.datetime(food_item.buy_year, food_item.buy_month, food_item.buy_date)
             exp_time = datetime.datetime(food_item.exp_year, food_item.exp_month, food_item.exp_date)
+            if now_time>=exp_time:
+                food_exp_calc['exp'].append(food_item)
+            elif (now_time - exp_time).days == 1:
+                food_exp_calc['day'].append(food_item)
+            elif (now_time - exp_time).days <= 7:
+                food_exp_calc['week'].append(food_item)
+            elif (now_time - exp_time).days <= 30:
+                food_exp_calc['month'].append(food_item)
             str_temp+=('<td>'+str(food_item.buy_month)+'/'+str(food_item.buy_date)+'/'+str(food_item.buy_year)+'</td>')
             str_temp+=('<td>'+str(food_item.exp_month)+'/'+str(food_item.exp_date)+'/'+str(food_item.exp_year)+'</td>')
             if now_time>=exp_time or bought_time>=exp_time:
-                str_temp+=('<td>'+str(True)+'</td>')
+                str_temp+=("<td><p class='red'>"+str(True)+"</p></td>")
             else:
-                str_temp+=('<td>'+str(False)+'</td>')
+                str_temp+=("<td><p  class='green'>"+str(False)+"</p></td>")
             str_temp+=("<td><form method='post' action='/remove'> <input type='hidden' name='food_item_key' value=" + str(food_item.key.id()) + "><input type='submit' value='Remove' ></form></td>")
             str_temp+='</tr>'
             food_list_dict['get_list']+=str_temp
+            for food_item in food_exp_calc['exp']:
+                str_temp = '<tr>'
+                str_temp+=('<td>'+food_item.food_type+'</td>')
+                str_temp+=('<td>'+food_item.food_name+'</td>')
+                str_temp+=('<td>0</td>')
+                food_list_dict['get_exp']+=str_temp
+            for food_item in food_exp_calc['day']:
+                str_temp = '<tr>'
+                str_temp+=('<td>'+food_item.food_type+'</td>')
+                str_temp+=('<td>'+food_item.food_name+'</td>')
+                str_temp+=('<td>1</td>')
+                food_list_dict['get_day']+=str_temp
+            for food_item in food_exp_calc['week']:
+                now_time = datetime.datetime.now()
+                exp_time = datetime.datetime(food_item.exp_year, food_item.exp_month, food_item.exp_date)
+                str_temp = '<tr>'
+                str_temp+=('<td>'+food_item.food_type+'</td>')
+                str_temp+=('<td>'+food_item.food_name+'</td>')
+                str_temp+=('<td>'+ str(math.fabs((now_time - exp_time).days)) + '</td>')
+                food_list_dict['get_week']+=str_temp
+            for food_item in food_exp_calc['month']:
+                now_time = datetime.datetime.now()
+                exp_time = datetime.datetime(food_item.exp_year, food_item.exp_month, food_item.exp_date)
+                str_temp = '<tr>'
+                str_temp+=('<td>'+food_item.food_type+'</td>')
+                str_temp+=('<td>'+food_item.food_name+'</td>')
+                str_temp+=('<td>'+ str(math.fabs((now_time - exp_time).days)) + '</td>')
+                food_list_dict['get_month']+=str_temp
 
 
 
         list_template = current_jinja_environment.get_template('/templates/listFood.html')
         self.response.write(list_template.render(food_list_dict))
+        food_exp_calc = {'exp':[], 'month':[], 'week':[], 'day':[]}
+        food_list_dict = {'get_list': '', 'get_day': '', 'get_week': '', 'get_month': '', 'get_exp': ''}
 
 
 
@@ -155,6 +200,7 @@ app = webapp2.WSGIApplication([
     #('/', MainHandler),
     ('/', WelcomeHandler),
     ('/login-page', LoginHandler),
+    ('/homepage', HomePageHandler),
     ('/make-user', MakeUserHandler),
     ('/add-food', AddFoodHandler),
     ('/list-food', ListFoodHandler),

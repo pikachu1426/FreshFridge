@@ -81,6 +81,8 @@ class FoodConfirmHandler(webapp2.RequestHandler):
             'food_name': self.request.get('food-name'),
             'bought_date': self.request.get('bought-date'),
             'exp_date': self.request.get('exp-date'),
+            'client_id':client_secrets['web']['client_id'],
+            'api_key':client_secrets['web']['api_key'],
         }
 
         current_food_information['food_type'] = self.request.get('food-type')

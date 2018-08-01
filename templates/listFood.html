@@ -2,21 +2,47 @@
 <html>
 <head>
 <title>FreshFridge</title>
+<link rel=”stylesheet” href='home.css'>
 <style>
   table, th, td {
     border: 1px solid black;
   }
+  body {
+      background-color: #e6e9ff;
+  }
+  #main {
+    margin: auto;
+    width: 1000px;
+    background-color: white;
+    padding: 10px;
+  }
 </style>
 </head>
 <body>
+  <div id="main">
+  <section>
+    <center>
+  <img src='https://image.ibb.co/ktZyfe/Screen_Shot_2018_08_01_at_2_16_49_PM.png'>
+    </center>
+  </section>
 
-<h1>Welcome to FreshFridge</h1>
+  <section>
+    <center>
+  <img src='https://image.ibb.co/kiZVAe/Screen_Shot_2018_08_01_at_9_58_22_AM.png'>
+    </center>
+  </section>
 
-<h2>
-  Expired
-</h2>
-<table stype='width:100%'>
+<br>
+
+  <section>
+    <center>
+  <img src='https://image.ibb.co/dxtYfe/Screen_Shot_2018_08_01_at_2_48_41_PM.png'>
+    </center>
+  </section>
+
+
   <center>
+<table stype='width:100%'>
   <tr>
     <th>
       Food Type
@@ -31,9 +57,19 @@
   {{get_exp|safe}}
 </table>
 </center>
-<h2>
-  One Day Left
-</h2>
+
+<br>
+<br>
+<br>
+<br>
+
+<section>
+  <center>
+<img src='https://image.ibb.co/i62gYz/Screen_Shot_2018_08_01_at_2_55_51_PM.png'>
+  </center>
+</section>
+
+<center>
 <table stype='width:100%'>
   <tr>
     <th>
@@ -47,12 +83,21 @@
     </th>
   </tr>
   {{get_day|safe}}
-
 </table>
+</center>
 
-<h2>
-  One Week Left
-</h2>
+<br>
+<br>
+<br>
+
+
+<section>
+  <center>
+<img src='https://image.ibb.co/bu1N6K/Screen_Shot_2018_08_01_at_2_44_21_PM.png'>
+  </center>
+</section>
+
+<center>
 <table stype='width:100%'>
   <tr>
     <th>
@@ -68,11 +113,19 @@
   {{get_week|safe}}
 
 </table>
+</center>
 
+<br>
+<br>
+<br>
 
-<h2>
-  One Month Left
-</h2>
+<section>
+  <center>
+<img src='https://image.ibb.co/jDM3fe/Screen_Shot_2018_08_01_at_2_44_25_PM.png'>
+  </center>
+</section>
+
+<center>
 <table stype='width:100%'>
   <tr>
     <th>
@@ -88,8 +141,27 @@
   {{get_month|safe}}
 
 </table>
+</center>
 
+<br>
 
+<section>
+  <center>
+<img src='https://image.ibb.co/kiZVAe/Screen_Shot_2018_08_01_at_9_58_22_AM.png'>
+  </center>
+</section>
+
+<br>
+
+<section>
+  <center>
+<img src='https://image.ibb.co/nhWfRK/Screen_Shot_2018_08_01_at_3_21_23_PM.png'>
+  </center>
+</section>
+
+<br>
+
+<center>
 <table style="width:100%">
   <tr>
     <th>Food Type</th>
@@ -101,6 +173,7 @@
   </tr>
   {{get_list|safe}}
 </table>
+</center>
 <style>
 .red{
   color: red;
@@ -111,8 +184,13 @@
 }
 </style>
 
+<br>
+<br>
+
 <form method='post' action='/add-food'>
+  <center>
   <input type='submit' value='Add another item'>
+</center>
 </form>
 
 </body>

@@ -5,16 +5,41 @@
   <title>Confirm</title>
 </head>
 
+<link rel=”stylesheet” href='home.css'>
+<style>
+body {
+    background-color: #e6e9ff;
+}
+#main {
+  margin: auto;
+  width: 1000px;
+  background-color: white;
+  padding: 10px;
+}
+</style>
+</head>
 <body>
+
+<body>
+  <div id="main">
   <h4>Confirm</h4>
   <p>
     Food Type: {{food_type}} <br /> Food Name: {{food_name}}<br /> Bought Date: {{bought_date}}<br /> Expiration Date: {{exp_date}}
   </p>
 
+
   <form method='post' action='/confirmed'>
     <input type='submit' value='Confirm!' />
   </form>
   <br />
+</center>
+
+  <section>
+    <center>
+  <img src='https://image.ibb.co/gLvn6K/Screen_Shot_2018_08_01_at_12_09_01_PM.png'>
+    </center>
+  </section>
+
 
   <form method='get' action='/homepage'>
     <input type='submit' value='home!' />
@@ -26,9 +51,12 @@
   <br />
 
   <h3> To add to your google calendar sign in !</h3>
+
   <!--Add buttons to initiate auth sequence and sign out-->
+  <center>
   <button id="authorize_button" style="display: none;">Authorize</button>
   <button id="signout_button" style="display: none;">Sign Out</button>
+</center>
 
   <pre id="content"></pre>
 

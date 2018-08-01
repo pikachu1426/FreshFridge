@@ -4,7 +4,10 @@ import os
 import jinja2
 import datetime
 from food_items import FoodItem
+from google.appengine.ext import ndb
 from google.appengine.api import users
+
+#class User(ndb.Model):
 
 
 
@@ -21,10 +24,15 @@ current_jinja_environment = jinja2.Environment(
 
 current_food_information = {}
 
+#class WelcomeHandler(webapp2.RequestHandler):
+    #welcome_template = current_jinja_environment.get_template('templates/welcome.html')
+    #self.response.write(welcome_template.render({'login_url': users.create_login_url('/')}))
+
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
+            nickname=user.nickname()
             auth_url = users.create_logout_url('/')
             auth_text = "Log Out"
         else:
@@ -61,9 +69,6 @@ class AddFoodHandler(webapp2.RequestHandler):
 
 class FoodConfirmHandler(webapp2.RequestHandler):
     def post(self):
-
-
-
         template_vars = {
             'food_type': self.request.get('food-type'),
             'food_name': self.request.get('food-name'),
@@ -80,6 +85,7 @@ class FoodConfirmHandler(webapp2.RequestHandler):
         self.response.write(confirm_template.render(template_vars))
 
 
+#class ConfirmedHandler(webapp2.RequestHandler):
 class ConfirmedHandler(webapp2.RequestHandler):
     def post(self):
         self.response.write("Food Item Added to Database")
@@ -93,9 +99,9 @@ class ConfirmedHandler(webapp2.RequestHandler):
         self.response.write(confirmed_template.render())
 
 class ListFoodHandler(webapp2.RequestHandler):
-    def post(self):
-        food_list_dict = {'get_list': '',}
+    def get(self):
         food_item_query = FoodItem.query()
+        food_list_dict = {'get_list': ''}
         for food_item in food_item_query:
             str_temp = "<tr>"
             str_temp+=('<td>'+food_item.food_type+'</td>')
@@ -109,9 +115,11 @@ class ListFoodHandler(webapp2.RequestHandler):
                 str_temp+=('<td>'+str(True)+'</td>')
             else:
                 str_temp+=('<td>'+str(False)+'</td>')
-            str_temp+=("<td><form method='post' action='/'> <input type='submit' value='Remove' ></form></td>")
+            str_temp+=("<td><form method='post' action='/remove'> <input type='hidden' name='food_item_key' value=" + str(food_item.key.id()) + "><input type='submit' value='Remove' ></form></td>")
             str_temp+='</tr>'
             food_list_dict['get_list']+=str_temp
+
+
 
         list_template = current_jinja_environment.get_template('/templates/listFood.html')
         self.response.write(list_template.render(food_list_dict))
@@ -120,7 +128,14 @@ class ListFoodHandler(webapp2.RequestHandler):
 
 
 
-
+class RemoveHandler(webapp2.RequestHandler):
+    def post(self):
+        food_item_key = self.request.get('food_item_key')
+        for item in FoodItem.query():
+            if str(item.key.id())==food_item_key:
+                item.key.delete()
+        delete_template = current_jinja_environment.get_template('/templates/delete.html')
+        self.response.write(delete_template.render())
 
 
 
@@ -136,10 +151,11 @@ class ListFoodHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     #('/', MainHandler),
-    ('/', LoginHandler),
+    ('/', HomeHandler),
     ('/homepage', HomeHandler),
     ('/add-food', AddFoodHandler),
     ('/list-food', ListFoodHandler),
     ('/confirm', FoodConfirmHandler),
     ('/confirmed', ConfirmedHandler),
+    ('/remove', RemoveHandler),
 ])

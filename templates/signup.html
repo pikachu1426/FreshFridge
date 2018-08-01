@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello</title>
+</head>
+
+<body>
+  <p>
+    Please insert your name.
+  </p>
+    <form method='post' name='sign-up' action='/make-user' >
+      Name: <br />
+      <input type='text' name='name' />
+      <br />
+      <input type='submit' value='Sign Up!' onClick='return validateForm()' />
+    </form>
+
+  <script>
+  function validateForm() {
+            if (document.forms['sign-up']['name'].value === "") {
+              alert(" Name can not be empty.")
+              return false;
+            }
+            return true;
+            }
+  </script>
+</body>
+</html>

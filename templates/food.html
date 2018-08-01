@@ -27,31 +27,6 @@
     <br />
     <input type='submit' value='Go!' onClick='return validateForm()'/>
   </form>
-  
-  <script>
-function validateForm() {
-        let fields = ['food-name', 'bought-date', 'exp-date'];
-        let length = fields.length;
-        let fieldname;
-
-        for (i=0; i<length; i++) {
-          fieldname = fields[i];
-          if (document.forms['food-form'][fieldname].value === "") {
-            alert(fieldname + " can not be empty.")
-            return false;
-          }
-          if (fieldname=='bought-date' || fieldname=='exp-date'){
-            let arr = document.forms['food-form'][fieldname].value.split('/')
-            if (arr.length!=3){
-              alert("Please format " + fieldname + " correctly")
-              return false;
-            }
-          }
-        }
-        return true;
-      };
-</script>
-
   <br />
   <h3> To add to your google calendar sign in !</h3>
   <!--Add buttons to initiate auth sequence and sign out-->
@@ -182,30 +157,5 @@ function validateForm() {
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-=======
-
-<script>
-function validateForm() {
-        let fields = ['food-name', 'bought-date', 'exp-date'];
-        let length = fields.length;
-        let fieldname;
-
-        for (i=0; i<length; i++) {
-          fieldname = fields[i];
-          if (document.forms['food-form'][fieldname].value === "") {
-            alert(fieldname + " can not be empty.")
-            return false;
-          }
-          if (fieldname=='bought-date' || fieldname=='exp-date'){
-            let arr = document.forms['food-form'][fieldname].value.split('/')
-            if (arr.length!=3){
-              alert("Please format " + fieldname + " correctly")
-              return false;
-            }
-          }
-        }
-        return true;
-      };
-</script>
 </body>
 </html>

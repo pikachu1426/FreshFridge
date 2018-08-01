@@ -2,25 +2,64 @@
 <html>
 <head>
 
+
+<title>FreshFridge</title>
+<link rel=”stylesheet” href='home.css'>
+<style>
+body {
+    background-color: #e6e9ff;
+}
+#main {
+  margin: auto;
+  width: 1000px;
+  background-color: white;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+  <div id="main">
   <section>
     <center>
   <img src='https://image.ibb.co/by0tdz/Screen_Shot_2018_07_31_at_5_32_53_PM.png'>
     </center>
   </section>
 
-<title>FreshFridge</title>
-<link rel=”stylesheet” href='home.css'>
-</head>
-<body>
-
-<h1 class='title'>if u want text put it here</h1>
 
 <form method='post' action='/add-food'>
-  <input type='submit' value='Add Food Item'>
+  <center>
+    <input type="image"  id="saveform" src="https://image.ibb.co/mCSZke/Screen_Shot_2018_07_31_at_5_59_11_PM.png" alt="Submit Form" />
+  </center>
 </form>
 
-<form method='get' action='/list-food'>
-  <input type='submit' value='List Food Items'>
+<form method='post' action='/list-food'>
+  <center>
+  <input type="image"  id="saveform" src="https://image.ibb.co/j8Kx5e/Screen_Shot_2018_07_31_at_6_04_09_PM.png" alt="Submit Form" />
+  </center>
+</form>
+
+<br>
+<br>
+
+<form method='post' action='/list-food'>
+  <center>
+  <input type="image"  id="saveform" src="https://image.ibb.co/kiZVAe/Screen_Shot_2018_08_01_at_9_58_22_AM.png" alt="Submit Form" />
+  </center>
+</form>
+
+<br>
+<br>
+
+<form method='post' action='/list-food'>
+  <center>
+  <input type="image"  id="saveform" src="https://image.ibb.co/nJTFtz/Screen_Shot_2018_08_01_at_8_59_47_AM.png" alt="Submit Form" />
+  </center>
+</form>
+
+<form method='post' action='/list-food'>
+  <center>
+  <input type="image"  id="saveform" src="https://image.ibb.co/h3anqe/Screen_Shot_2018_08_01_at_9_53_46_AM.png" alt="Submit Form" />
+  </center>
 </form>
 
 <form method='get' action='{{logout_link}}'>

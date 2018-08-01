@@ -15,7 +15,7 @@ f = open('client_secret.json', 'r')
 client_secrets =json.loads(f.read())
 f.close()
 
-print client_secrets
+
 
 current_jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),

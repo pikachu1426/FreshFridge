@@ -11,6 +11,83 @@
 <body>
 
 <h1>Welcome to FreshFridge</h1>
+<h2>
+  Expired
+</h2>
+<table stype='width:100%'>
+  <tr>
+    <th>
+      Food Type
+    </th>
+    <th>
+      Food Name
+    </th>
+    <th>
+      Days Left
+    </th>
+  </tr>
+  {{get_exp|safe}}
+
+</table>
+
+<h2>
+  One Day Left
+</h2>
+<table stype='width:100%'>
+  <tr>
+    <th>
+      Food Type
+    </th>
+    <th>
+      Food Name
+    </th>
+    <th>
+      Days Left
+    </th>
+  </tr>
+  {{get_day|safe}}
+
+</table>
+
+<h2>
+  One Week Left
+</h2>
+<table stype='width:100%'>
+  <tr>
+    <th>
+      Food Type
+    </th>
+    <th>
+      Food Name
+    </th>
+    <th>
+      Days Left
+    </th>
+  </tr>
+  {{get_week|safe}}
+
+</table>
+
+
+<h2>
+  One Month Left
+</h2>
+<table stype='width:100%'>
+  <tr>
+    <th>
+      Food Type
+    </th>
+    <th>
+      Food Name
+    </th>
+    <th>
+      Days Left
+    </th>
+  </tr>
+  {{get_month|safe}}
+
+</table>
+
 
 <table style="width:100%">
   <tr>
@@ -23,7 +100,15 @@
   </tr>
   {{get_list|safe}}
 </table>
+<style>
+.red{
+  color: red;
+}
 
+.green{
+  color: green;
+}
+</style>
 
 <form method='post' action='/add-food'>
   <input type='submit' value='Add another item'>

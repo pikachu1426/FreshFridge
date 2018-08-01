@@ -56,7 +56,10 @@ class MakeUserHandler(webapp2.RequestHandler):
         time.sleep(.25)
         self.redirect('/homepage')
 
-
+class HomePageHandler(webapp2.RequestHandler):
+    def get(self):
+        home_template = current_jinja_environment.get_template('templates/home.html')
+        self.response.write(home_template.render())
 
 class AddFoodHandler(webapp2.RequestHandler):
     def post(self):
@@ -196,6 +199,7 @@ app = webapp2.WSGIApplication([
     #('/', MainHandler),
     ('/', WelcomeHandler),
     ('/login-page', LoginHandler),
+    ('/homepage', HomePageHandler),
     ('/make-user', MakeUserHandler),
     ('/add-food', AddFoodHandler),
     ('/list-food', ListFoodHandler),

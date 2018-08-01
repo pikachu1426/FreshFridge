@@ -24,10 +24,16 @@ current_jinja_environment = jinja2.Environment(
 
 current_food_information = {}
 
+
 class WelcomeHandler(webapp2.RequestHandler):
     def get(self):
-        welcome_template = current_jinja_environment.get_template('templates/welcome.html')
-        self.response.write(welcome_template.render())
+        loggedin_user = users.get_current_user()
+        if loggedin_user:
+            time.sleep(.25)
+            self.redirect('/homepage')
+        else:
+            welcome_template = current_jinja_environment.get_template('templates/welcome.html')
+            self.response.write(welcome_template.render())
 
 
 
@@ -36,7 +42,7 @@ class LoginHandler(webapp2.RequestHandler):
         loggedin_user = users.get_current_user()
 
         if loggedin_user:
-            current_users = User.query(User.id == loggedin_user.user_id()).fetch()
+            current_users = User.query().filter(User.id == loggedin_user.user_id())
             x = []
             if current_users == x:
                 template = current_jinja_environment.get_template('templates/signup.html')
@@ -46,7 +52,7 @@ class LoginHandler(webapp2.RequestHandler):
                 self.response.write(template.render({'logout_link': users.create_logout_url('/')}))
         else:
             login_prompt_template = current_jinja_environment.get_template('templates/login.html')
-            self.response.write(login_prompt_template.render({'login_link': users.create_login_url('/')}))
+            self.response.write(login_prompt_template.render({'login_link': users.create_login_url('/homepage')}))
 
 
 class MakeUserHandler(webapp2.RequestHandler):
@@ -58,8 +64,9 @@ class MakeUserHandler(webapp2.RequestHandler):
 
 class HomePageHandler(webapp2.RequestHandler):
     def get(self):
-        home_template = current_jinja_environment.get_template('templates/home.html')
-        self.response.write(home_template.render())
+            home_template = current_jinja_environment.get_template('templates/home.html')
+            self.response.write(home_template.render({'logout_link': users.create_logout_url('/')}))
+
 
 class AddFoodHandler(webapp2.RequestHandler):
     def post(self):

@@ -104,3 +104,7 @@ venv.bak/
 .mypy_cache/
 
 client_secret.json
+
+food_items.pyc
+
+main.pyc

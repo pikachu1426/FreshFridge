@@ -3,12 +3,11 @@ import json
 import os
 import jinja2
 import datetime
+import time
 from food_items import FoodItem
+from food_items import User
 from google.appengine.ext import ndb
 from google.appengine.api import users
-
-#class User(ndb.Model):
-
 
 
 f = open('client_secret.json', 'r')
@@ -24,33 +23,38 @@ current_jinja_environment = jinja2.Environment(
 
 current_food_information = {}
 
-#class WelcomeHandler(webapp2.RequestHandler):
-    #welcome_template = current_jinja_environment.get_template('templates/welcome.html')
-    #self.response.write(welcome_template.render({'login_url': users.create_login_url('/')}))
+class WelcomeHandler(webapp2.RequestHandler):
+    def get(self):
+        welcome_template = current_jinja_environment.get_template('templates/welcome.html')
+        self.response.write(welcome_template.render())
+
+
 
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        if user:
-            nickname=user.nickname()
-            auth_url = users.create_logout_url('/')
-            auth_text = "Log Out"
+        loggedin_user = users.get_current_user()
+
+        if loggedin_user:
+            current_users = User.query(User.id == loggedin_user.user_id()).fetch()
+            self.response.write(current_users)
+            x = []
+            if current_users == x:
+                template = current_jinja_environment.get_template('templates/signup.html')
+                self.response.write(template.render())
+            else:
+                template = current_jinja_environment.get_template('templates/home.html')
+                self.response.write(template.render({'logout_link': users.create_logout_url('/')}))
         else:
-            auth_url = users.create_login_url('/homepage')
-            auth_text = "Log In"
-        template_vars = {
-            "auth_url": auth_url,
-            "auth_text": auth_text,
-        }
-        template = current_jinja_environment.get_template("templates/start.html")
-        self.response.write(template.render(template_vars))
+            login_prompt_template = current_jinja_environment.get_template('templates/login.html')
+            self.response.write(login_prompt_template.render({'login_link': users.create_login_url('/')}))
 
 
-
-class HomeHandler(webapp2.RequestHandler):
-    def get(self):
-        home_template = current_jinja_environment.get_template('/templates/home.html')
-        self.response.write(home_template.render())
+class MakeUserHandler(webapp2.RequestHandler):
+    def post(self):
+        user = User(first_name = self.request.get('name'), id = users.get_current_user().user_id())
+        user.put()
+        time.sleep(.25)
+        self.redirect('/homepage')
 
 
 
@@ -92,7 +96,7 @@ class ConfirmedHandler(webapp2.RequestHandler):
         bought_date_list = current_food_information['bought_date'].split('/')
         exp_date_list = current_food_information['exp_date'].split('/')
 
-        FoodItem(food_type=current_food_information['food_type'], food_name=current_food_information['food_name'],\
+        FoodItem(user_id=str(users.get_current_user().user_id()), food_type=current_food_information['food_type'], food_name=current_food_information['food_name'],\
             buy_month=int(bought_date_list[0]), buy_date=int(bought_date_list[1]), buy_year=int(bought_date_list[2]),\
             exp_month=int(exp_date_list[0]), exp_date=int(exp_date_list[1]), exp_year=int(exp_date_list[2])).put()
         confirmed_template = current_jinja_environment.get_template('/templates/confirmed.html')
@@ -100,7 +104,7 @@ class ConfirmedHandler(webapp2.RequestHandler):
 
 class ListFoodHandler(webapp2.RequestHandler):
     def get(self):
-        food_item_query = FoodItem.query()
+        food_item_query = FoodItem.query().filter(FoodItem.user_id==str(users.get_current_user().user_id()))
         food_list_dict = {'get_list': ''}
         for food_item in food_item_query:
             str_temp = "<tr>"
@@ -151,8 +155,9 @@ class RemoveHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     #('/', MainHandler),
-    ('/', HomeHandler),
-    ('/homepage', HomeHandler),
+    ('/', WelcomeHandler),
+    ('/login-page', LoginHandler),
+    ('/make-user', MakeUserHandler),
     ('/add-food', AddFoodHandler),
     ('/list-food', ListFoodHandler),
     ('/confirm', FoodConfirmHandler),

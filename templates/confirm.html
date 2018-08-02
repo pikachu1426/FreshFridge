@@ -243,14 +243,14 @@ body {
 
     function addToCalendar() {
       var event = {
-  'summary': 'Google I/O 2015',
-  'description': 'A chance to hear more about Google\'s developer products.',
+  'summary': 'FreshFridge Alert',
+  'description': '{{food_type}}: {{food_name}}',
   'start': {
-    'dateTime': '2019-05-28T09:00:00-07:00',
+    'dateTime': '{{format1}}',
     'timeZone': 'America/Los_Angeles'
   },
   'end': {
-    'dateTime': '2019-05-28T17:00:00-07:00',
+    'dateTime': '{{format2}}',
     'timeZone': 'America/Los_Angeles'
   }
 };
@@ -261,7 +261,7 @@ var request = gapi.client.calendar.events.insert({
 });
 
 request.execute(function(event) {
-  appendPre('Event created: ' + event.htmlLink);
+  appendPre('Event created: ' + event.description);
 });
   }
 

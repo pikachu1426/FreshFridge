@@ -150,6 +150,7 @@ body {
   <div class="centers">
   <button id="authorize_button"  class= "button button4" style="display: none;">Authorize</button>
   <button id="signout_button" class= "button button4" style="display: none;">Sign Out</button>
+  <button onclick="addToCalendar()">Click me</button>
 </div>
   <pre id="content"></pre>
 
@@ -163,7 +164,7 @@ body {
 
     // Authorization scopes required by the API; multiple scopes can be
     // included, separated by spaces.
-    var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+    var SCOPES = "https://www.googleapis.com/auth/calendar";
 
 
     var authorizeButton = document.getElementById('authorize_button');
@@ -239,6 +240,30 @@ body {
       var textContent = document.createTextNode(message + '\n');
       pre.appendChild(textContent);
     }
+
+    function addToCalendar() {
+      var event = {
+  'summary': 'Google I/O 2015',
+  'description': 'A chance to hear more about Google\'s developer products.',
+  'start': {
+    'dateTime': '2019-05-28T09:00:00-07:00',
+    'timeZone': 'America/Los_Angeles'
+  },
+  'end': {
+    'dateTime': '2019-05-28T17:00:00-07:00',
+    'timeZone': 'America/Los_Angeles'
+  }
+};
+
+var request = gapi.client.calendar.events.insert({
+  'calendarId': 'primary',
+  'resource': event
+});
+
+request.execute(function(event) {
+  appendPre('Event created: ' + event.htmlLink);
+});
+  }
 
     /**
      * Print the summary and start datetime/date of the next ten events in

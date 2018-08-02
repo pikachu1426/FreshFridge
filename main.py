@@ -84,11 +84,15 @@ class AddFoodHandler(webapp2.RequestHandler):
 
 class FoodConfirmHandler(webapp2.RequestHandler):
     def post(self):
+        exp_date_list = self.request.get('exp-date').split('/')
+        temp = exp_date_list[2]+'-'+exp_date_list[0]+'-'+exp_date_list[1]+'T17:00:00-07:00'
+
         template_vars = {
             'food_type': self.request.get('food-type'),
             'food_name': self.request.get('food-name'),
             'bought_date': self.request.get('bought-date'),
             'exp_date': self.request.get('exp-date'),
+            'format': temp,
             'client_id':client_secrets['web']['client_id'],
             'api_key':client_secrets['web']['api_key'],
         }

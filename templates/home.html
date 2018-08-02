@@ -15,6 +15,15 @@ body {
   background-color: white;
   padding: 10px;
 }
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
 </style>
 </head>
 <body>
@@ -63,7 +72,15 @@ body {
   </center>
 </section>
 
-<a href="{{logout_link}}">Log Out</a>
+<div>
+  <center>
+    <a href="{{logout_link}}" class="button"><div>
+      <center>
+        Log Out
+      </center>
+    </div></a>
+  </center>
+</div>
 
 </body>
 </html>

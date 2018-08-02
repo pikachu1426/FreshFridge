@@ -24,6 +24,36 @@ a.button {
     text-decoration: none;
     color: initial;
 }
+
+.button {
+    background-color: #808080;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 3px 2px;
+    cursor: pointer;
+}
+
+.button4:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    border-radius: 12px;
+}
+
+
+.button4 {border-radius: 12px;}
+
+.center {
+    margin: auto;
+    width: 10%;
+
+    padding: px;
+}
+
+
 </style>
 </head>
 <body>
@@ -74,7 +104,7 @@ a.button {
 
 <div>
   <center>
-    <a href="{{logout_link}}" class="button"><div>
+    <a href="{{logout_link}}" class="button button4"><div>
       <center>
         Log Out
       </center>

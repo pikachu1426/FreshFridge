@@ -42,8 +42,9 @@ class LoginHandler(webapp2.RequestHandler):
     def get(self):
         loggedin_user = users.get_current_user()
 
+
         if loggedin_user:
-            current_users = User.query().filter(User.id == loggedin_user.user_id())
+            current_users = User.query().filter(User.id == loggedin_user.user_id()).fetch()
             x = []
             if current_users == x:
                 template = current_jinja_environment.get_template('templates/signup.html')
@@ -53,7 +54,7 @@ class LoginHandler(webapp2.RequestHandler):
                 self.response.write(template.render({'logout_link': users.create_logout_url('/')}))
         else:
             login_prompt_template = current_jinja_environment.get_template('templates/login.html')
-            self.response.write(login_prompt_template.render({'login_link': users.create_login_url('/homepage')}))
+            self.response.write(login_prompt_template.render({'login_link': users.create_login_url('/login-page')}))
 
 
 class MakeUserHandler(webapp2.RequestHandler):

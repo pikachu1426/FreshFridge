@@ -1,40 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel=”stylesheet” href='home.css'>
   <style>
-body {
-  background-color: rgb(204, 255, 204);
-}
+  body {
+      background-color: #e0ffd9ff;
+  }
+  #main {
+    margin: auto;
+    width: 1000px;
+    background-color: white;
+    padding: 14px;
+  }
+  .button {
+      background-color: #808080;
+      border: none;
+      color: white;
+      padding: 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 0px 0px;
+      cursor: pointer;
+  }
 
-#main{
-  margin: auto;
-  width: 1000px;
-  background-color: rgba(0,0,0,0)
-  padding: 10px;
-}
+  .button4:hover {
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+      border-radius: 12px;
+  }
+
+
+  .button4 {border-radius: 12px;}
+
+  .center {
+      margin: auto;
+      width: 10%;
+
+      padding: px;
+  }
+
+
   </style>
+
 <title>Welcome</title>
 </head>
 <body>
 
+  <div id="main">
+  <section>
+    <center>
+  <img src='https://image.ibb.co/g74E5e/Screen_Shot_2018_08_02_at_9_18_45_AM.png'>
+    </center>
+  </section>
+
+<br>
+<br>
 
   <div id="main">
   <section>
     <center>
-  <img src='https://image.ibb.co/nFgiDz/Screen_Shot_2018_08_01_at_3_19_47_PM.png'>
+  <img src='https://image.ibb.co/g99HrK/Screen_Shot_2018_08_02_at_9_23_41_AM.png'>
     </center>
   </section>
 
+<br>
+<br>
 
-
-
-
-</div>
-<center>
-  <form method='get' action='/login-page'>
-    <input type='submit' value='Login' />
-  </form>
-</center>
+  <div class="center">
+        <div class="button button4">
+          <form method='get' action='/login-page'>
+            <button class="button button4">Login</button>
+          </form>
+        </div>
+  </div>
 
 </body>
 </html>

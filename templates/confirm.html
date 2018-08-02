@@ -3,7 +3,7 @@
 
 <head>
   <title>Confirm</title>
-  <link rel="stylesheet" type="text/css" href="confirm.css" media="screen" />
+
 
   <style>
 .button {
@@ -42,6 +42,46 @@ body {
   background-color: white;
   padding: 10px;
 }
+
+.btn-group .button {
+  background-color: #808080;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: left;
+}
+
+.btn-group .button:not(:last-child) {
+  border-right: none;
+  /* Prevent double borders */
+}
+
+.btn-group .button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 12px;
+}
+
+
+.btn-group .button {
+  border-radius: 12px;
+}
+
+.center {
+    margin: auto;
+    width: 30%;
+
+    padding: 5px;
+}
+
+
 </style>
 </head>
 <body>
@@ -52,33 +92,43 @@ body {
 
 
   <div id="main">
+<<<<<<< HEAD
 
     <section>
       <center>
     <img src='https://image.ibb.co/dKxAbK/Screen_Shot_2018_08_01_at_6_11_32_PM.png'>
       </center>
     </section>
+=======
+  
+>>>>>>> bc38d49f290fd5e64536d73062a7c24c98e23af0
   <p>
     Food Type: {{food_type}} <br /> Food Name: {{food_name}}<br /> Bought Date: {{bought_date}}<br /> Expiration Date: {{exp_date}}
   </p>
 
 
-  <form method='post' action='/confirmed'>
-    <button class="button button4">Confirm</button>
+  <div class="center">
+        <div class="btn-group">
+          <form method='post' action='/confirmed'>
+            <button class="button button4">Confirm</button>
+          </form>
 
-  </form>
-  <br />
-</center>
+          <form method='get' action='/homepage'>
+          <button class="button button4">Home</button>
+          </form>
+
+          <form method='post' action='/add-food'>
+            <button class="button button4">Go back</button>
+          </form>
+        </div>
+  </div>
+  <br/>
+
+</br/>
 
 
-  <form method='get' action='/homepage'>
-  <button class="button button4">Home</button>
-  </form>
-  <br />
 
-  <form method='post' action='/add-food'>
-    <button class="button button4">Go back</button>
-  </form>
+
   <br />
 
   <section>

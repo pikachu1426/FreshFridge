@@ -81,6 +81,13 @@ body {
     padding: 5px;
 }
 
+.centers {
+    margin: auto;
+    width: 10%;
+
+    padding: 5px;
+}
+
 
 </style>
 </head>
@@ -92,18 +99,16 @@ body {
 
 
   <div id="main">
-<<<<<<< HEAD
 
     <section>
       <center>
     <img src='https://image.ibb.co/dKxAbK/Screen_Shot_2018_08_01_at_6_11_32_PM.png'>
       </center>
     </section>
-=======
-  
->>>>>>> bc38d49f290fd5e64536d73062a7c24c98e23af0
   <p>
+    <center>
     Food Type: {{food_type}} <br /> Food Name: {{food_name}}<br /> Bought Date: {{bought_date}}<br /> Expiration Date: {{exp_date}}
+</center>
   </p>
 
 
@@ -125,11 +130,15 @@ body {
   <br/>
 
 </br/>
+<br>
 
+<section>
+  <center>
+<img src='https://image.ibb.co/kiZVAe/Screen_Shot_2018_08_01_at_9_58_22_AM.png'>
+  </center>
+</section>
 
-
-
-  <br />
+<br>
 
   <section>
     <center>
@@ -138,9 +147,10 @@ body {
   </section>
 
   <!--Add buttons to initiate auth sequence and sign out-->
+  <div class="centers">
   <button id="authorize_button"  class= "button button4" style="display: none;">Authorize</button>
   <button id="signout_button" class= "button button4" style="display: none;">Sign Out</button>
-
+</div>
   <pre id="content"></pre>
 
   <script type="text/javascript">
@@ -154,6 +164,7 @@ body {
     // Authorization scopes required by the API; multiple scopes can be
     // included, separated by spaces.
     var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+
 
     var authorizeButton = document.getElementById('authorize_button');
     var signoutButton = document.getElementById('signout_button');

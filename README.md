@@ -5,7 +5,7 @@ Made at Google Computer Science Summer Institute LAX 2018.
 
 Creators: 
 
-- Chole Huang
+- [Chole Huang](https://github.com/huangchloe) 
         
 - Emily San Juan
         

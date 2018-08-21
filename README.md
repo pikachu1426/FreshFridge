@@ -7,6 +7,6 @@ Creators:
 
 - [Chole Huang](https://github.com/huangchloe) 
         
-- Emily San Juan
+- [Emily San Juan](https://github.com/emily-sj)
         
-- Nathan Zhao
+- [Nathan Zhao](https://github.com/pikachu1426)

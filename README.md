@@ -3,6 +3,8 @@ Fresh Fridge is a web application used for tracking food expiration dates.
 
 Made at Google Computer Science Summer Institute LAX 2018.
 
+Published online at [http://freshfridge-212119.appspot.com](http://freshfridge-212119.appspot.com)
+
 Creators: 
 
 - [Chole Huang](https://github.com/huangchloe) 
@@ -11,4 +13,4 @@ Creators:
         
 - [Nathan Zhao](https://github.com/yimingnzhao)
 
-[http://freshfridge-212119.appspot.com](http://freshfridge-212119.appspot.com)
+
